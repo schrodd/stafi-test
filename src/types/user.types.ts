@@ -19,4 +19,13 @@ export interface UserData {
     country: string
   }
   email: string
+  fullAddress?: string
+}
+
+export interface UserContextData {
+  firstName: string
+  lastName: string
+  email: string
+  gender: UserGenders
+  address: string
 }

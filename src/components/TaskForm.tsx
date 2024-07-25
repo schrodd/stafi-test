@@ -12,7 +12,6 @@ import {
 import useTasksContext from "@/hooks/useTasksContext"
 import { cn } from "@/lib/utils"
 import { taskSchema } from "@/schemas/task.schema"
-import { TaskFormProps } from "@/types/taskForm.types"
 import { TaskPriority } from "@/types/tasks.types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
@@ -26,15 +25,17 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Textarea } from "./ui/textarea"
 import { useState } from "react"
+import { useToast } from "./ui/use-toast"
 
-export default function TaskForm({ placeholders }: TaskFormProps) {
+export default function TaskForm() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const form = useForm<z.infer<typeof taskSchema>>({
     resolver: zodResolver(taskSchema),
     defaultValues: {
-      dueDate: placeholders?.dueDate ? new Date(placeholders?.dueDate) : new Date(),
-      priority: placeholders?.priority ?? TaskPriority.MEDIUM,
-      title: placeholders?.title ?? "New task"
+      dueDate: new Date(),
+      priority: TaskPriority.MEDIUM,
+      title: "New task",
+      description: "New task"
     }
   })
 

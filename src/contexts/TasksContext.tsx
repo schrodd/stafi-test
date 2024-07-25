@@ -1,5 +1,6 @@
 "use client"
 
+import { useToast } from "@/components/ui/use-toast"
 import { TaskData, TaskPriority } from "@/types/tasks.types"
 import React, { createContext, ReactNode, useEffect, useState } from "react"
 
@@ -17,6 +18,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<TaskData[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<unknown>(null)
+  const { toast } = useToast()
 
   const fakeFetch = (): Promise<{ results: TaskData[] }> => {
     return new Promise((resolve) => {
@@ -53,6 +55,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     setTasks((tl) => {
       return tl ? [...tl, task] : [task]
     })
+    toast({ title: "Great!", description: "You've created a new task successfully." })
   }
 
   useEffect(() => {
@@ -78,5 +81,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     fetchTasks()
   }, [])
 
-  return <TasksContext.Provider value={{ tasks, setTasks, isLoading, error, addTask }}>{children}</TasksContext.Provider>
+  return (
+    <TasksContext.Provider value={{ tasks, setTasks, isLoading, error, addTask }}>{children}</TasksContext.Provider>
+  )
 }

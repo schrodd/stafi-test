@@ -15,15 +15,7 @@ export default function Home() {
       ) : isLoading || !user ? (
         <LoaderCircle className="animate-spin" />
       ) : (
-        <UserForm
-          placeholders={{
-            email: user.email,
-            firstName: user.name.first,
-            lastName: user.name.last,
-            gender: user.gender,
-            address: `${user.location.street.name} ${user.location.street.number} (${user.location.city}), ${user.location.state}, ${user.location.country}`
-          }}
-        />
+        <UserForm user={user}/>
       )}
     </main>
   )

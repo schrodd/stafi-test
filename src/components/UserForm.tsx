@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
@@ -13,34 +12,31 @@ import {
   SelectValue
 } from "@/components/ui/select"
 import { toProperCase } from "@/helpers/toProperCase"
+import useUserContext from "@/hooks/useUserContext"
 import { userSchema } from "@/schemas/user.schema"
-import { UserFormProps } from "@/types/userForm.types"
-import { UserGenders } from "@/types/user.types"
+import { UserContextData, UserGenders } from "@/types/user.types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Check } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Textarea } from "./ui/textarea"
-import { Check, Plus } from "lucide-react"
-import { Separator } from "./ui/separator"
-import useTasksContext from "@/hooks/useTasksContext"
-import TaskCard from "./TaskCard"
 import TaskList from "./TaskList"
+import { Separator } from "./ui/separator"
+import { Textarea } from "./ui/textarea"
 
-export default function UserForm({ placeholders }: UserFormProps) {
+export default function UserForm({ user }: { user: UserContextData }) {
+  const { updateUserData } = useUserContext()
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
-      firstName: placeholders?.firstName ?? "",
-      lastName: placeholders?.lastName ?? "",
-      email: placeholders?.email ?? "",
-      address: placeholders?.address ?? ""
+      firstName: user?.firstName ?? "",
+      lastName: user?.lastName ?? "",
+      email: user?.email ?? "",
+      address: user?.address ?? ""
     }
   })
 
   function onSubmit(values: z.infer<typeof userSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    updateUserData(values)
   }
 
   return (
