@@ -1,11 +1,11 @@
 import useTasksContext from "@/hooks/useTasksContext"
-import { Plus } from "lucide-react"
 import TaskCard from "./TaskCard"
-import { Button } from "./ui/button"
+import TaskForm from "./TaskForm"
 import { Skeleton } from "./ui/skeleton"
 
 export default function TaskList() {
-  const { tasks, isLoading } = useTasksContext()
+  const { tasks, isLoading, addTask } = useTasksContext()
+
   return (
     <div className="space-y-3 md:w-[400px] flex-1">
       <p className="text-lg font-bold mb-2">Tasks</p>
@@ -21,10 +21,7 @@ export default function TaskList() {
           {tasks?.map((t, i) => (
             <TaskCard key={i} task={t} />
           ))}
-          <Button>
-            Add task
-            <Plus size={16} className="ml-2" />
-          </Button>
+          <TaskForm />
         </>
       )}
     </div>

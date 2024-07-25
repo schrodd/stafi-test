@@ -1,4 +1,4 @@
-import { TaskPriority } from "./tasks.types"
+import { TaskData, TaskPriority } from "./tasks.types"
 
 export interface TaskFormProps {
   placeholders?: {

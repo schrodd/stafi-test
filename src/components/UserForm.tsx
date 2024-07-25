@@ -127,7 +127,7 @@ export default function UserForm({ placeholders }: UserFormProps) {
                 <FormItem>
                   <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Doe" {...field} />
+                    <Textarea {...field} />
                   </FormControl>
                   <FormMessage />
                   <FormDescription>Your address will remain private.</FormDescription>

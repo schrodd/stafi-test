@@ -1,13 +1,14 @@
 "use client"
 
 import { TaskData, TaskPriority } from "@/types/tasks.types"
-import { createContext, ReactNode, useEffect, useState } from "react"
+import React, { createContext, ReactNode, useEffect, useState } from "react"
 
 interface TasksContextProps {
   tasks: TaskData[] | null
   setTasks: React.Dispatch<React.SetStateAction<TaskData[] | null>>
   isLoading: boolean
   error: unknown
+  addTask: (task: TaskData) => void
 }
 
 export const TasksContext = createContext<TasksContextProps | null>(null)
@@ -46,6 +47,14 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     })
   }
 
+  const addTask = (task: TaskData) => {
+    // The approach here would be a POST to the backend api, and if it's successful, then a GET to load the updated list of tasks.
+    // For this example, i'm going to add the task data directly to the context state.
+    setTasks((tl) => {
+      return tl ? [...tl, task] : [task]
+    })
+  }
+
   useEffect(() => {
     const fetchTasks = async () => {
       setIsLoading(true)
@@ -69,5 +78,5 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     fetchTasks()
   }, [])
 
-  return <TasksContext.Provider value={{ tasks, setTasks, isLoading, error }}>{children}</TasksContext.Provider>
+  return <TasksContext.Provider value={{ tasks, setTasks, isLoading, error, addTask }}>{children}</TasksContext.Provider>
 }
