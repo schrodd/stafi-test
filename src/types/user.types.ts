@@ -14,6 +14,9 @@ export interface UserData {
       number: number
       name: string
     }
+    city: string
+    state: string
+    country: string
   }
   email: string
 }

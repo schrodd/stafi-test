@@ -19,14 +19,16 @@ import { UserGenders } from "@/types/user.types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { Textarea } from "./ui/textarea"
 
 export default function UserForm({ placeholders }: UserFormProps) {
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
-      firstName: placeholders.firstName ?? "",
-      lastName: placeholders.lastName ?? "",
-      email: placeholders.email ?? ""
+      firstName: placeholders?.firstName ?? "",
+      lastName: placeholders?.lastName ?? "",
+      email: placeholders?.email ?? "",
+      address: placeholders?.address ?? "",
     }
   })
 
@@ -109,6 +111,20 @@ export default function UserForm({ placeholders }: UserFormProps) {
                     </Select>
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Doe" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                  <FormDescription>Your address will remain private.</FormDescription>
                 </FormItem>
               )}
             />
