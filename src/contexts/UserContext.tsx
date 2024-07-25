@@ -1,7 +1,18 @@
-import { UserData } from "@/types/user.types"
-import { useState, useEffect } from "react"
+"use client"
 
-const useRandomUser = () => {
+import { UserData, UserGenders } from "@/types/user.types"
+import { createContext, ReactNode, useEffect, useState } from "react"
+
+interface UserContextProps {
+  user: UserData | null
+  setUser: React.Dispatch<React.SetStateAction<UserData | null>>
+  isLoading: boolean
+  error: unknown
+}
+
+export const UserContext = createContext<UserContextProps | null>(null)
+
+export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<unknown>(null)
@@ -30,7 +41,5 @@ const useRandomUser = () => {
     fetchUser()
   }, [])
 
-  return { user, isLoading, error }
+  return <UserContext.Provider value={{ user, setUser, isLoading, error }}>{children}</UserContext.Provider>
 }
-
-export default useRandomUser

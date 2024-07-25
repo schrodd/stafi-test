@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select"
 import { toProperCase } from "@/helpers/toProperCase"
 import { userSchema } from "@/schemas/user.schema"
-import { UserFormProps } from "@/types/user-form.types"
+import { UserFormProps } from "@/types/userForm.types"
 import { UserGenders } from "@/types/user.types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"

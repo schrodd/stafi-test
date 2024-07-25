@@ -2,11 +2,11 @@
 
 import ErrorAlert from "@/components/ErrorAlert"
 import UserForm from "@/components/UserForm"
-import useRandomUser from "@/hooks/useRandomUser"
+import useUserContext from "@/hooks/useUserContext"
 import { LoaderCircle } from "lucide-react"
 
 export default function Home() {
-  const { user, isLoading, error } = useRandomUser()
+  const { user, isLoading, error } = useUserContext()
 
   return (
     <main className="bg-slate-100 w-full min-h-screen p-10 flex items-start justify-center">
