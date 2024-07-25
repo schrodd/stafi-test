@@ -31,7 +31,8 @@ export default function UserForm({ user }: { user: UserContextData }) {
       firstName: user?.firstName ?? "",
       lastName: user?.lastName ?? "",
       email: user?.email ?? "",
-      address: user?.address ?? ""
+      address: user?.address ?? "",
+      gender: user?.gender ?? UserGenders.MALE
     }
   })
 

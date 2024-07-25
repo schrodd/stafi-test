@@ -67,3 +67,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+.bg-low {
+  background-color: #3b82f6; /* blue-500 */
+}
+
+.bg-medium {
+  background-color: #fbbf24; /* yellow-500 */
+}
+
+.bg-high {
+  background-color: #f97316; /* orange-500 */
+}
+
+.bg-urgent {
+  background-color: #ef4444; /* red-500 */
+}
+
+.bg-default {
+  background-color: #9ca3af; /* gray-500 */
+}
