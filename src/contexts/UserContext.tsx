@@ -1,6 +1,6 @@
 "use client"
 
-import { UserData, UserGenders } from "@/types/user.types"
+import { UserData } from "@/types/user.types"
 import { createContext, ReactNode, useEffect, useState } from "react"
 
 interface UserContextProps {

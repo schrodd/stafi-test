@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Textarea } from "./ui/textarea"
+import { Check } from "lucide-react"
 
 export default function UserForm({ placeholders }: UserFormProps) {
   const form = useForm<z.infer<typeof userSchema>>({
@@ -136,6 +137,7 @@ export default function UserForm({ placeholders }: UserFormProps) {
         <Button asChild>
           <Label htmlFor="submit-trigger" className="cursor-pointer">
             Submit
+            <Check size={16} className="ml-2"/>
           </Label>
         </Button>
       </CardFooter>
