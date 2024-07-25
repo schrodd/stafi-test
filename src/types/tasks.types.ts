@@ -7,6 +7,7 @@ export enum TaskPriority {
 
 export interface TaskData {
   title: string
+  description: string
   dueDate: string
   priority: TaskPriority
 }

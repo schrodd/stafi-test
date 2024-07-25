@@ -23,22 +23,20 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
         resolve({
           results: [
             {
-              title: "Send hotfix ASAP",
-              dueDate: "2024-07-24",
-              priority: TaskPriority.URGENT
-            },
-            {
               title: "Complete project report",
+              description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
               dueDate: "2024-08-01",
               priority: TaskPriority.HIGH
             },
             {
               title: "Schedule meeting with team",
+              description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
               dueDate: "2024-07-26",
               priority: TaskPriority.MEDIUM
             },
             {
               title: "Review pull requests",
+              description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
               dueDate: "2024-07-28",
               priority: TaskPriority.LOW
             }

@@ -20,7 +20,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Textarea } from "./ui/textarea"
-import { Check } from "lucide-react"
+import { Check, Plus } from "lucide-react"
+import { Separator } from "./ui/separator"
+import useTasksContext from "@/hooks/useTasksContext"
+import TaskCard from "./TaskCard"
+import TaskList from "./TaskList"
 
 export default function UserForm({ placeholders }: UserFormProps) {
   const form = useForm<z.infer<typeof userSchema>>({
@@ -29,7 +33,7 @@ export default function UserForm({ placeholders }: UserFormProps) {
       firstName: placeholders?.firstName ?? "",
       lastName: placeholders?.lastName ?? "",
       email: placeholders?.email ?? "",
-      address: placeholders?.address ?? "",
+      address: placeholders?.address ?? ""
     }
   })
 
@@ -40,14 +44,15 @@ export default function UserForm({ placeholders }: UserFormProps) {
   }
 
   return (
-    <Card className="min-w-[400px]">
+    <Card className="w-full md:w-auto">
       <CardHeader>
         <CardTitle>Nested form</CardTitle>
         <CardDescription>Stafi assessment</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col md:flex-row gap-4 md:gap-0">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 min-w-[300px]">
+            <p className="text-lg font-bold mb-2">User data</p>
             <FormField
               control={form.control}
               name="firstName"
@@ -129,18 +134,15 @@ export default function UserForm({ placeholders }: UserFormProps) {
                 </FormItem>
               )}
             />
-            <Input type="submit" id="submit-trigger" className="hidden" />
+            <Button type="submit">
+              Submit
+              <Check size={16} className="ml-2" />
+            </Button>
           </form>
         </Form>
+        <Separator orientation="vertical" className="mx-5 h-auto" />
+        <TaskList />
       </CardContent>
-      <CardFooter>
-        <Button asChild>
-          <Label htmlFor="submit-trigger" className="cursor-pointer">
-            Submit
-            <Check size={16} className="ml-2"/>
-          </Label>
-        </Button>
-      </CardFooter>
     </Card>
   )
 }
