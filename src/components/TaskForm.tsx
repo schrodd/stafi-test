@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
 import dayjs from "dayjs"
 import { CalendarIcon, Check, Plus } from "lucide-react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "./ui/button"
@@ -24,8 +25,6 @@ import { Calendar } from "./ui/calendar"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Textarea } from "./ui/textarea"
-import { useState } from "react"
-import { useToast } from "./ui/use-toast"
 
 export default function TaskForm() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -140,12 +139,7 @@ export default function TaskForm() {
                         </FormControl>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          initialFocus
-                        />
+                        <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
                       </PopoverContent>
                     </Popover>
                     <FormMessage />

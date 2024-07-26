@@ -14,7 +14,7 @@ import {
 import { toProperCase } from "@/helpers/toProperCase"
 import useUserContext from "@/hooks/useUserContext"
 import { userSchema } from "@/schemas/user.schema"
-import { UserContextData, UserGenders } from "@/types/user.types"
+import { UserData, UserGenders } from "@/types/user.types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Check } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -23,7 +23,7 @@ import TaskList from "./TaskList"
 import { Separator } from "./ui/separator"
 import { Textarea } from "./ui/textarea"
 
-export default function UserForm({ user }: { user: UserContextData }) {
+export default function UserForm({ user }: { user: UserData }) {
   const { updateUserData } = useUserContext()
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
@@ -137,7 +137,8 @@ export default function UserForm({ user }: { user: UserContextData }) {
             </Button>
           </form>
         </Form>
-        <Separator orientation="vertical" className="mx-5 h-auto" />
+        <Separator orientation="vertical" className="mx-5 h-auto hidden md:block" />
+        <Separator orientation="horizontal" className="my-3 md:hidden" />
         <TaskList />
       </CardContent>
     </Card>

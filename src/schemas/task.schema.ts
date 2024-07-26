@@ -1,5 +1,3 @@
-"use client"
-
 import { TaskPriority } from "@/types/tasks.types"
 import { z } from "zod"
 

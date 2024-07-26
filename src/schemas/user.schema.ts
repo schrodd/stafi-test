@@ -1,5 +1,3 @@
-"use client"
-
 import { UserGenders } from "@/types/user.types"
 import { z } from "zod"
 
